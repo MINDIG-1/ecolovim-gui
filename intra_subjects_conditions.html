@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Selector - Intra-subjects | Between-conditions</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .container {
+            margin: 20px;
+        }
+        .image-container {
+            position: relative;
+            width: 45%; /* Adjust the width as needed */
+            overflow: hidden;
+            padding-top: 30%; /* Adjusted Aspect Ratio */
+        }
+        .image-container img {
+            position: absolute;
+            top: -8%; /* Crop by -8% from the top */
+            left: 0;
+            width: 100%;
+            height: auto;
+        }
+        .images-row {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .images-row img {
+            max-width: 100%; /* Adjust the width of each image */
+        }
+        .button-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-2xl font-bold mb-4">Select Image</h1>
+        <div class="mb-4">
+            <label for="psdType" class="block text-sm font-medium text-gray-700">PSD Type:</label>
+            <select id="psdType" name="psdType" class="form-control">
+                <option value="psd_abs_allch">Absolute</option>
+                <option value="psd_rel_allch">Relative</option>
+            </select>
+        </div>
+        <div class="mb-4">
+            <label for="patient" class="block text-sm font-medium text-gray-700">Patient:</label>
+            <select id="patient" name="patient" class="form-control">
+                <option value="0">Patient 1</option>
+                <option value="1">Patient 2</option>
+                <option value="2">Patient 3</option>
+                <option value="3">Patient 4</option>
+            </select>
+        </div>
+        <div class="mb-4">
+            <label for="channel" class="block text-sm font-medium text-gray-700">Channel:</label>
+            <select id="channel" name="channel" class="form-control">
+                <option value="L03">L03</option>
+                <option value="L13">L13</option>
+                <option value="L02">L02</option>
+                <option value="R03">R03</option>
+                <option value="R13">R13</option>
+                <option value="R02">R02</option>
+            </select>
+        </div>
+        <button onclick="showImage()" class="btn btn-primary">Show Image</button>
+        <div class="images-row mt-4">
+            <div class="image-container">
+                <img id="selectedImage" src="" alt="Selected Image" style="display:none;" />
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showImage() {
+            var psdType = document.getElementById("psdType").value;
+            var patient = parseInt(document.getElementById("patient").value);
+            var channel = document.getElementById("channel").value;
+
+            var imagePath = 'Figures/M3/' + psdType + '_meanEpochs_patient' + (patient + 1) + '_' + channel + '.png';
+
+            var img = document.getElementById("selectedImage");
+            img.src = imagePath;
+            img.style.display = "block";
+        }
+    </script>
+</body>
+</html>

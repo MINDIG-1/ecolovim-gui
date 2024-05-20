@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Selector - Intra-subjects</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .container {
+            margin: 20px;
+        }
+        .image-container {
+            position: relative;
+            width: 45%; /* Adjust the width as needed */
+            overflow: hidden;
+            padding-top: 30%; /* Adjusted Aspect Ratio */
+        }
+        .image-container img {
+            position: absolute;
+            top: -8%; /* Crop by -8% from the top */
+            left: 0;
+            width: 100%;
+            height: auto;
+        }
+        .correlation-container {
+            position: relative;
+            width: 45%; /* Adjust the width as needed */
+            overflow: hidden;
+            padding-top: 56.25%; /* Reset to 16:9 Aspect Ratio */
+            margin-top: 20px;
+        }
+        .correlation-container img {
+            position: absolute;
+            top: -10%; /* Ensure the image is fully visible */
+            left: 0;
+            width: 100%;
+            height: auto;
+        }
+        .images-row {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .images-row img {
+            max-width: 100%; /* Adjust the width of each image */
+        }
+        .button-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-2xl font-bold mb-4">Select Image</h1>
+        <div class="mb-4">
+            <label for="psdType" class="block text-sm font-medium text-gray-700">PSD Type:</label>
+            <select id="psdType" name="psdType" class="form-control">
+                <option value="psd_abs_allch">Absolute</option>
+                <option value="psd_rel_allch">Relative</option>
+            </select>
+        </div>
+        <div class="mb-4">
+            <label for="patient" class="block text-sm font-medium text-gray-700">Patient:</label>
+            <select id="patient" name="patient" class="form-control">
+                <option value="patient1">Patient 1</option>
+                <option value="patient2">Patient 2</option>
+                <option value="patient3">Patient 3</option>
+                <option value="patient4">Patient 4</option>
+            </select>
+        </div>
+        <div class="mb-4">
+            <label for="condition" class="block text-sm font-medium text-gray-700">Condition:</label>
+            <select id="condition" name="condition" class="form-control">
+                <option value="rest_stimOFF">rest_stimOFF</option>
+                <option value="mvt_stimOFF">mvt_stimOFF</option>
+                <option value="rest_stimON">rest_stimON</option>
+                <option value="mvt_stimON">mvt_stimON</option>
+            </select>
+        </div>
+        <div class="mb-4">
+            <label for="channel" class="block text-sm font-medium text-gray-700">Channel:</label>
+            <select id="channel" name="channel" class="form-control">
+                <option value="L03">L03</option>
+                <option value="L13">L13</option>
+                <option value="L02">L02</option>
+                <option value="R03">R03</option>
+                <option value="R13">R13</option>
+                <option value="R02">R02</option>
+            </select>
+        </div>
+        <button onclick="showImage()" class="btn btn-primary">Show Image</button>
+        <div class="images-row mt-4">
+            <div class="image-container">
+                <img id="selectedImage1" src="" alt="Selected Image 1" style="display:none;" />
+            </div>
+            <div class="image-container">
+                <img id="selectedImage2" src="" alt="Selected Image 2" style="display:none;" />
+            </div>
+        </div>
+        <div class="button-container">
+            <button onclick="showCorrelationMatrix()" id="corrButton" class="btn btn-secondary mt-4" style="display:none;">Correlation matrix</button>
+        </div>
+        <div class="correlation-container">
+            <img id="corrMatrixImage" src="" alt="Correlation Matrix" style="display:none;" />
+        </div>
+    </div>
+
+    <script>
+        function showImage() {
+            var psdType = document.getElementById("psdType").value;
+            var patient = document.getElementById("patient").value;
+            var condition = document.getElementById("condition").value;
+            var channel = document.getElementById("channel").value;
+
+            var imagePath1 = 'Figures/M3/' + psdType + '_epochs_patient' + patient.slice(-1) + '_' + condition + '_' + channel + '.png';
+            var imagePath2 = 'Figures/M3/' + psdType + '_meanEpochs_patient' + patient.slice(-1) + '_' + condition + '_' + channel + '.png';
+
+            var img1 = document.getElementById("selectedImage1");
+            var img2 = document.getElementById("selectedImage2");
+
+            img1.src = imagePath1;
+            img1.style.display = "block";
+            img2.src = imagePath2;
+            img2.style.display = "block";
+
+            document.getElementById("corrButton").style.display = "inline-block";
+        }
+
+        function showCorrelationMatrix() {
+            var psdType = document.getElementById("psdType").value;
+            var patient = document.getElementById("patient").value;
+            var condition = document.getElementById("condition").value;
+            var channel = document.getElementById("channel").value;
+
+            var imagePath = 'Figures/M3/corr_matrix_bin_' + psdType + '_' + condition + '_' + channel + '.png';
+            var img = document.getElementById("corrMatrixImage");
+            img.src = imagePath;
+            img.style.display = "block";
+        }
+    </script>
+</body>
+</html>
