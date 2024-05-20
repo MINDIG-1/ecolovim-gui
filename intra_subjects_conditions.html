@@ -32,13 +32,16 @@
             max-width: 100%; /* Adjust the width of each image */
         }
         .button-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-top: 20px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="text-2xl font-bold mb-4">Select Image</h1>
+        <h1 class="text-2xl font-bold mb-4">Select Image - Intra-subjects | Between-conditions</h1>
         <div class="mb-4">
             <label for="psdType" class="block text-sm font-medium text-gray-700">PSD Type:</label>
             <select id="psdType" name="psdType" class="form-control">
@@ -66,10 +69,19 @@
                 <option value="R02">R02</option>
             </select>
         </div>
-        <button onclick="showImage()" class="btn btn-primary">Show Image</button>
+        <div class="button-container">
+            <button onclick="showImage()" class="btn btn-primary">Show Image</button>
+            <button onclick="saveImages()" class="btn btn-secondary">Save Images</button>
+        </div>
         <div class="images-row mt-4">
             <div class="image-container">
-                <img id="selectedImage" src="" alt="Selected Image" style="display:none;" />
+                <img id="selectedImage1" src="" alt="Selected Image 1" style="display:none;" />
+            </div>
+            <div class="image-container">
+                <img id="selectedImage2" src="" alt="Selected Image 2" style="display:none;" />
+            </div>
+            <div class="image-container">
+                <img id="selectedImage3" src="" alt="Selected Image 3" style="display:none;" />
             </div>
         </div>
     </div>
@@ -80,11 +92,40 @@
             var patient = parseInt(document.getElementById("patient").value);
             var channel = document.getElementById("channel").value;
 
-            var imagePath = 'Figures/M3/' + psdType + '_meanEpochs_patient' + (patient + 1) + '_' + channel + '.png';
+            var imagePath1 = 'Figures/M3/' + psdType + '_meanEpochs_patient' + (patient + 1) + '_' + channel + '.png';
+            var imagePath2 = 'Figures/M3/' + 'intra_subj_sig_clusters_' + psdType + '_' + channel + '.png';
+            var imagePath3 = 'Figures/M3/' + 'another_image_' + psdType + '_' + channel + '.png'; // Adjust the path for the third image
 
-            var img = document.getElementById("selectedImage");
-            img.src = imagePath;
-            img.style.display = "block";
+            var img1 = document.getElementById("selectedImage1");
+            var img2 = document.getElementById("selectedImage2");
+            var img3 = document.getElementById("selectedImage3");
+
+            img1.src = imagePath1;
+            img1.style.display = "block";
+            img2.src = imagePath2;
+            img2.style.display = "block";
+            img3.src = imagePath3; // Set the correct path for the third image
+            img3.style.display = "block";
+        }
+
+        function saveImages() {
+            downloadImage('selectedImage1');
+            downloadImage('selectedImage2');
+            downloadImage('selectedImage3');
+        }
+
+        function downloadImage(imgId) {
+            var img = document.getElementById(imgId);
+            if (img && img.src) {
+                var link = document.createElement('a');
+                link.href = img.src;
+                link.download = ''; // Leave download attribute empty to prompt user to name the file
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            } else {
+                alert('No image to save for ' + imgId);
+            }
         }
     </script>
 </body>
