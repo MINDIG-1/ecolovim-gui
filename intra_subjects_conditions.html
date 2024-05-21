@@ -94,24 +94,19 @@
 
             var imagePath1 = 'Figures/M3/' + psdType + '_meanEpochs_patient' + (patient + 1) + '_' + channel + '.png';
             var imagePath2 = 'Figures/M3/' + 'intra_subj_sig_clusters_' + psdType + '_' + channel + '.png';
-            var imagePath3 = 'Figures/M3/' + 'another_image_' + psdType + '_' + channel + '.png'; // Adjust the path for the third image
 
             var img1 = document.getElementById("selectedImage1");
             var img2 = document.getElementById("selectedImage2");
-            var img3 = document.getElementById("selectedImage3");
 
             img1.src = imagePath1;
             img1.style.display = "block";
             img2.src = imagePath2;
             img2.style.display = "block";
-            img3.src = imagePath3; // Set the correct path for the third image
-            img3.style.display = "block";
         }
 
         function saveImages() {
             downloadImage('selectedImage1');
             downloadImage('selectedImage2');
-            downloadImage('selectedImage3');
         }
 
         function downloadImage(imgId) {

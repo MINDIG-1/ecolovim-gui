@@ -64,6 +64,8 @@
             </select>
         </div>
         <button onclick="showImage()" class="btn btn-primary">Show Image</button>
+        <button onclick="saveImages()" class="btn btn-secondary">Save Images</button>
+
         <div class="images-row mt-4">
             <div class="image-container">
                 <img id="selectedImage1" src="" alt="Selected Image 1" style="display:none;" />
@@ -90,6 +92,25 @@
             img1.style.display = "block";
             img2.src = imagePath2;
             img2.style.display = "block";
+        }
+
+        function saveImages() {
+            downloadImage('selectedImage1');
+            downloadImage('selectedImage2');
+        }
+
+        function downloadImage(imgId) {
+            var img = document.getElementById(imgId);
+            if (img && img.src) {
+                var link = document.createElement('a');
+                link.href = img.src;
+                link.download = ''; // Leave download attribute empty to prompt user to name the file
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            } else {
+                alert('No image to save for ' + imgId);
+            }
         }
     </script>
 </body>
