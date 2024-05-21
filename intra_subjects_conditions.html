@@ -59,7 +59,7 @@
             </select>
         </div>
         <div class="mb-4">
-            <label for="channel" class="block text-sm font-medium text-gray-700">Channel:</label>
+            <label for="channel" class="block text-sm font-medium text-gray-700">Channel: (* Choose channels available during stim ON)</label>
             <select id="channel" name="channel" class="form-control">
                 <option value="L03">L03</option>
                 <option value="L13">L13</option>
@@ -69,10 +69,12 @@
                 <option value="R02">R02</option>
             </select>
         </div>
-        <div class="button-container">
+        <!-- <div class="button-container">
             <button onclick="showImage()" class="btn btn-primary">Show Image</button>
             <button onclick="saveImages()" class="btn btn-secondary">Save Images</button>
-        </div>
+        </div> -->
+        <button onclick="showImage()" class="btn btn-primary">Show Image</button>
+        <button onclick="saveImages()" class="btn btn-secondary">Save Images</button>
         <div class="images-row mt-4">
             <div class="image-container">
                 <img id="selectedImage1" src="" alt="Selected Image 1" style="display:none;" />
