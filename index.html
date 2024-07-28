@@ -7,6 +7,33 @@
     <!-- Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
+        @font-face {
+            font-family: 'Papyrus';
+            src: url('https://fonts.gstatic.com/s/papyrus/v10/8QIKrHDFq2gp4J0v9H-BxETpceyJnh1G.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between; 
+            align-items: flex-start;
+            padding: 20px;
+        }
+        .title {
+            font-size: 24px;
+            /* font-weight: bold; */
+            /* font-family: 'Courier New', Courier, monospace; */
+            /* font-family: 'Papyrus', Fantasy; */
+        }
+        .logo {
+            font-size: 24px;
+            /* font-weight: bold; */
+            font-style: italic;
+            /* font-family: 'Papyrus', Fantasy; */
+            /* font-family: 'Courier New', Courier, monospace; */
+            color: #201E43;
+
+        }
         .button-container {
             display: flex;
             justify-content: center;
@@ -19,10 +46,15 @@
     </style>
 </head>
 <body>
+    <div class="header">
+        <div class="title">ECOLOVIM</div>
+        <div class="logo">MINDIG x CHU BORDEAUX</div>
+    </div>
     <div class="button-container">
         <button onclick="window.location.href='inter_subjects.html'" class="btn btn-primary mx-2">Within-conditions | Inter-subjects</button>
         <button onclick="window.location.href='intra_subjects.html'" class="btn btn-primary mx-2">Within-conditions | Intra-subjects</button>
         <button onclick="window.location.href='intra_subjects_conditions.html'" class="btn btn-primary mx-2">Between-conditions | Intra-subjects</button>
+        <button onclick="window.location.href='coherence.html'" class="btn btn-primary mx-2">Coherence</button>
     </div>
 </body>
 </html>

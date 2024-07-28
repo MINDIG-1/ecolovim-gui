@@ -37,6 +37,13 @@
     <div class="container">
         <h1 class="text-2xl font-bold mb-4">Select Image</h1>
         <div class="mb-4">
+            <label for="session" class="block text-sm font-medium text-gray-700">Session:</label>
+            <select id="session" name="session" class="form-control">
+                <option value="M3">M3</option>
+                <option value="M6">M6</option>
+            </select>
+        </div>
+        <div class="mb-4">
             <label for="psdType" class="block text-sm font-medium text-gray-700">PSD Type:</label>
             <select id="psdType" name="psdType" class="form-control">
                 <option value="psd_abs_allch">Absolute</option>
@@ -78,12 +85,13 @@
 
     <script>
         function showImage() {
+            var session = document.getElementById("session").value;
             var psdType = document.getElementById("psdType").value;
             var condition = document.getElementById("condition").value;
             var channel = document.getElementById("channel").value;
 
-            var imagePath1 = 'Figures/M3/' + psdType + '_' + condition + '_' + channel + '.png';
-            var imagePath2 = 'Figures/M3/mean_' + psdType + '_' + condition + ' - ' + channel + '.png';
+            var imagePath1 = 'Figures/' + session + '/' + psdType + '_' + condition + '_' + channel + '.png';
+            var imagePath2 = 'Figures/' + session + '/mean_' + psdType + '_' + condition + ' - ' + channel + '.png';
 
             var img1 = document.getElementById("selectedImage1");
             var img2 = document.getElementById("selectedImage2");

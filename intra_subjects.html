@@ -56,6 +56,13 @@
     <div class="container">
         <h1 class="text-2xl font-bold mb-4">Select Image</h1>
         <div class="mb-4">
+            <label for="session" class="block text-sm font-medium text-gray-700">Session:</label>
+            <select id="session" name="session" class="form-control">
+                <option value="M3">M3</option>
+                <option value="M6">M6</option>
+            </select>
+        </div>
+        <div class="mb-4">
             <label for="psdType" class="block text-sm font-medium text-gray-700">PSD Type:</label>
             <select id="psdType" name="psdType" class="form-control">
                 <option value="psd_abs_allch">Absolute</option>
@@ -65,10 +72,16 @@
         <div class="mb-4">
             <label for="patient" class="block text-sm font-medium text-gray-700">Patient:</label>
             <select id="patient" name="patient" class="form-control">
-                <option value="patient1">Patient 1</option>
-                <option value="patient2">Patient 2</option>
-                <option value="patient3">Patient 3</option>
-                <option value="patient4">Patient 4</option>
+                <option value="1">Patient 1</option>
+                <option value="2">Patient 2</option>
+                <option value="3">Patient 3</option>
+                <option value="4">Patient 4</option>
+                <option value="5">Patient 5</option>
+                <option value="6">Patient 6</option>
+                <option value="7">Patient 7</option>
+                <option value="8">Patient 8</option>
+                <option value="9">Patient 9</option>
+                <option value="10">Patient 10</option>
             </select>
         </div>
         <div class="mb-4">
@@ -114,13 +127,14 @@
 
     <script>
         function showImage() {
+            var session = document.getElementById("session").value;
             var psdType = document.getElementById("psdType").value;
             var patient = document.getElementById("patient").value;
             var condition = document.getElementById("condition").value;
             var channel = document.getElementById("channel").value;
 
-            var imagePath1 = 'Figures/M3/' + psdType + '_epochs_patient' + patient.slice(-1) + '_' + condition + '_' + channel + '.png';
-            var imagePath2 = 'Figures/M3/' + psdType + '_meanEpochs_patient' + patient.slice(-1) + '_' + condition + '_' + channel + '.png';
+            var imagePath1 = 'Figures/' + session + '/' + psdType + '_epochs_patient' + patient + '_' + condition + '_' + channel + '.png';
+            var imagePath2 = 'Figures/' + session + '/' + psdType + '_meanEpochs_patient' + patient + '_' + condition + '_' + channel + '.png';
 
             var img1 = document.getElementById("selectedImage1");
             var img2 = document.getElementById("selectedImage2");
