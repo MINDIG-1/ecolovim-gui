@@ -1,60 +1,50 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-    <title>Index</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Tailwind CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <style>
-        @font-face {
-            font-family: 'Papyrus';
-            src: url('https://fonts.gstatic.com/s/papyrus/v10/8QIKrHDFq2gp4J0v9H-BxETpceyJnh1G.woff2') format('woff2');
-            font-weight: normal;
-            font-style: normal;
-        }
-        .header {
-            display: flex;
-            justify-content: space-between; 
-            align-items: flex-start;
-            padding: 20px;
-        }
-        .title {
-            font-size: 24px;
-            /* font-weight: bold; */
-            /* font-family: 'Courier New', Courier, monospace; */
-            /* font-family: 'Papyrus', Fantasy; */
-        }
-        .logo {
-            font-size: 24px;
-            /* font-weight: bold; */
-            font-style: italic;
-            /* font-family: 'Papyrus', Fantasy; */
-            /* font-family: 'Courier New', Courier, monospace; */
-            color: #201E43;
 
-        }
-        .button-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .button-container button {
-            margin: 0 10px;
-        }
-    </style>
+<head>
+  <title>Home</title>
+  <!-- Logo -->
+  <link rel="icon" type="image/svg"
+    href="https://mindig.io/wp-content/uploads/2023/01/cropped-Asset-4@3x-1-32x32.png" />
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @font-face {
+      font-family: "Papyrus";
+      src: url("https://fonts.gstatic.com/s/papyrus/v10/8QIKrHDFq2gp4J0v9H-BxETpceyJnh1G.woff2") format("woff2");
+      font-weight: normal;
+      font-style: normal;
+    }
+  </style>
 </head>
-<body>
-    <div class="header">
-        <div class="title">ECOLOVIM</div>
-        <div class="logo">MINDIG x CHU BORDEAUX</div>
+
+<body class="bg-[url('assets/brain-bg.jpg')] bg-no-repeat bg-cover bg-center bg-fixed">
+  <div class="flex absolute w-full justify-between items-start p-5">
+    <p class="text-lg text-white">ECOLOVIM</p>
+    <p class="text-lg text-white italic">MINDIG x CHU BORDEAUX</p>
+  </div>
+  <div class="flex flex-col justify-center items-center h-screen w-[60%] mx-auto gap-4">
+    <div class="flex items-center justify-between w-full">
+      <button onclick="window.location.href='inter_subjects.html'"
+        class="flex-1 text-white text-2xl h-60 mx-2 backdrop-blur-sm bg-white-100/30 px-4 py-2 border border-white-300 hover:backdrop-blur-lg transition-all duration-300">
+        Within-conditions | Inter-subjects
+      </button>
+      <button onclick="window.location.href='intra_subjects.html'"
+        class="flex-1 text-white text-2xl h-60 mx-2 backdrop-blur-sm bg-white-100/30 px-4 py-2 border border-white-300 hover:backdrop-blur-lg transition-all duration-300">
+        Within-conditions | Intra-subjects
+      </button>
     </div>
-    <div class="button-container">
-        <button onclick="window.location.href='inter_subjects.html'" class="btn btn-primary mx-2">Within-conditions | Inter-subjects</button>
-        <button onclick="window.location.href='intra_subjects.html'" class="btn btn-primary mx-2">Within-conditions | Intra-subjects</button>
-        <button onclick="window.location.href='intra_subjects_conditions.html'" class="btn btn-primary mx-2">Between-conditions | Intra-subjects</button>
-        <button onclick="window.location.href='coherence.html'" class="btn btn-primary mx-2">Coherence</button>
+    <div class="flex items-center justify-between w-full">
+      <button onclick="window.location.href='coherence.html'"
+        class="flex-1 text-white text-2xl h-60 mx-2 backdrop-blur-sm bg-white-100/30 px-4 py-2 border border-white-300 hover:backdrop-blur-lg transition-all duration-300">
+        Between-conditions | Intra-subjects
+      </button>
+      <button onclick="window.location.href='coherence.html'"
+        class="flex-1 text-white text-2xl h-60 mx-2 backdrop-blur-sm bg-white-100/30 px-4 py-2 border border-white-300 hover:backdrop-blur-lg transition-all duration-300">
+        Coherence
+      </button>
     </div>
+  </div>
 </body>
+
 </html>
