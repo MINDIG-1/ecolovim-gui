@@ -1,135 +1,131 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
+
 <head>
-    <title>Image Selector - Intra-subjects | Between-conditions</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Tailwind CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <style>
-        .container {
-            margin: 20px;
-        }
-        .image-container {
-            position: relative;
-            width: 45%; /* Adjust the width as needed */
-            overflow: hidden;
-            padding-top: 30%; /* Adjusted Aspect Ratio */
-        }
-        .image-container img {
-            position: absolute;
-            top: -8%; /* Crop by -8% from the top */
-            left: 0;
-            width: 100%;
-            height: auto;
-        }
-        .images-row {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-        }
-        .images-row img {
-            max-width: 100%; /* Adjust the width of each image */
-        }
-        .button-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 20px;
-        }
-    </style>
+  <title>Image Selector - Intra-subjects | Between-conditions</title>
+  <!-- Logo -->
+  <link rel="icon" type="image/svg"
+    href="https://mindig.io/wp-content/uploads/2023/01/cropped-Asset-4@3x-1-32x32.png" />
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div class="container">
-        <h1 class="text-2xl font-bold mb-4">Select Image - Intra-subjects | Between-conditions</h1>
-        <div class="mb-4">
-            <label for="session" class="block text-sm font-medium text-gray-700">Session:</label>
-            <select id="session" name="session" class="form-control">
-                <option value="M3">M3</option>
-                <option value="M6">M6</option>
-            </select>
+
+<body class="bg-[url('assets/brain-bg.jpg')] bg-no-repeat bg-cover bg-center bg-fixed">
+  <div class="w-full min-h-screen backdrop-blur-md flex flex-col items-center justify-center p-20">
+    <div class="mx-auto w-3/4 p-10 rounded-lg bg-white/10">
+      <h1 class="text-white text-2xl font-bold mb-4">Select Image</h1>
+      <div class="mb-4">
+        <label for="session" class="block mb-1 text-sm font-medium text-white">Session:</label>
+        <select id="session" name="session"
+          class="bg-gray-700 border border-gray-600 placeholder-gray-400 text-white text-sm rounded-lg block w-full p-2.5">
+          <option value="M3">M3</option>
+          <option value="M6">M6</option>
+        </select>
+      </div>
+      <div class="mb-4">
+        <label for="psdType" class="block mb-1 text-sm font-medium text-white">PSD Type:</label>
+        <select id="psdType" name="psdType"
+          class="bg-gray-700 border border-gray-600 placeholder-gray-400 text-white text-sm rounded-lg block w-full p-2.5">
+          <option value="psd_abs_allch">Absolute</option>
+          <option value="psd_rel_allch">Relative</option>
+        </select>
+      </div>
+      <div class="mb-4">
+        <label for="patient" class="block mb-1 text-sm font-medium text-white">Patient:</label>
+        <select id="patient" name="patient"
+          class="bg-gray-700 border border-gray-600 placeholder-gray-400 text-white text-sm rounded-lg block w-full p-2.5">
+          <option value="1">Patient 1</option>
+          <option value="2">Patient 2</option>
+          <option value="3">Patient 3</option>
+          <option value="4">Patient 4</option>
+        </select>
+      </div>
+      <div class="mb-4">
+        <label for="channel" class="block mb-1 text-sm font-medium text-white">Channel: (* Choose channels available
+          during stim ON)</label>
+        <select id="channel" name="channel"
+          class="bg-gray-700 border border-gray-600 placeholder-gray-400 text-white text-sm rounded-lg block w-full p-2.5">
+          <option value="L03">L03</option>
+          <option value="L13">L13</option>
+          <option value="L02">L02</option>
+          <option value="R03">R03</option>
+          <option value="R13">R13</option>
+          <option value="R02">R02</option>
+        </select>
+      </div>
+      <button onclick="showImage()"
+        class="text-white bg-gray-800 border border-gray-600 hover:bg-gray-700 hover:border-gray-600 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
+        Show Image
+      </button>
+      <button onclick="saveImages()"
+        class="text-white bg-gray-800 border border-gray-600 hover:bg-gray-700 hover:border-gray-600 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
+        Save Images
+      </button>
+      <div class="flex flex-row justify-around items-center gap-2 mt-4">
+        <div class="relative w-1/2">
+          <img id="selectedImage1" src="" alt="Selected Image 1" style="display: none" />
         </div>
-        <div class="mb-4">
-            <label for="psdType" class="block text-sm font-medium text-gray-700">PSD Type:</label>
-            <select id="psdType" name="psdType" class="form-control">
-                <option value="psd_abs_allch">Absolute</option>
-                <option value="psd_rel_allch">Relative</option>
-            </select>
+        <div class="relative w-1/2">
+          <img id="selectedImage2" src="" alt="Selected Image 2" style="display: none" />
         </div>
-        <div class="mb-4">
-            <label for="patient" class="block text-sm font-medium text-gray-700">Patient:</label>
-            <select id="patient" name="patient" class="form-control">
-                <option value="1">Patient 1</option>
-                <option value="2">Patient 2</option>
-                <option value="3">Patient 3</option>
-                <option value="4">Patient 4</option>
-            </select>
-        </div>
-        <div class="mb-4">
-            <label for="channel" class="block text-sm font-medium text-gray-700">Channel: (* Choose channels available during stim ON)</label>
-            <select id="channel" name="channel" class="form-control">
-                <option value="L03">L03</option>
-                <option value="L13">L13</option>
-                <option value="L02">L02</option>
-                <option value="R03">R03</option>
-                <option value="R13">R13</option>
-                <option value="R02">R02</option>
-            </select>
-        </div>
-        <!-- <div class="button-container">
-            <button onclick="showImage()" class="btn btn-primary">Show Image</button>
-            <button onclick="saveImages()" class="btn btn-secondary">Save Images</button>
-        </div> -->
-        <button onclick="showImage()" class="btn btn-primary">Show Image</button>
-        <button onclick="saveImages()" class="btn btn-secondary">Save Images</button>
-        
-        <div class="images-row mt-4">
-            <div class="image-container">
-                <img id="selectedImage1" src="" alt="Selected Image 1" style="display:none;" />
-            </div>
-            <div class="image-container">
-                <img id="selectedImage2" src="" alt="Selected Image 2" style="display:none;" />
-            </div>
-        </div>
+      </div>
     </div>
 
     <script>
-        function showImage() {
-            var session = document.getElementById("session").value;
-            var psdType = document.getElementById("psdType").value;
-            var patient = parseInt(document.getElementById("patient").value);
-            var channel = document.getElementById("channel").value;
+      function showImage() {
+        var session = document.getElementById("session").value;
+        var psdType = document.getElementById("psdType").value;
+        var patient = parseInt(document.getElementById("patient").value);
+        var channel = document.getElementById("channel").value;
 
-            var imagePath1 = 'Figures/' + session + '/' + psdType + '_meanEpochs_patient' + patient + '_' + channel + '.png';
-            var imagePath2 = 'Figures/' + session + '/' + 'intra_subj_sig_clusters_' + psdType + '_' + channel + '.png';
+        var imagePath1 =
+          "Figures/" +
+          session +
+          "/" +
+          psdType +
+          "_meanEpochs_patient" +
+          patient +
+          "_" +
+          channel +
+          ".png";
+        var imagePath2 =
+          "Figures/" +
+          session +
+          "/" +
+          "intra_subj_sig_clusters_" +
+          psdType +
+          "_" +
+          channel +
+          ".png";
 
-            var img1 = document.getElementById("selectedImage1");
-            var img2 = document.getElementById("selectedImage2");
+        var img1 = document.getElementById("selectedImage1");
+        var img2 = document.getElementById("selectedImage2");
 
-            img1.src = imagePath1;
-            img1.style.display = "block";
-            img2.src = imagePath2;
-            img2.style.display = "block";
+        img1.src = imagePath1;
+        img1.style.display = "block";
+        img2.src = imagePath2;
+        img2.style.display = "block";
+      }
+
+      function saveImages() {
+        downloadImage("selectedImage1");
+        downloadImage("selectedImage2");
+      }
+
+      function downloadImage(imgId) {
+        var img = document.getElementById(imgId);
+        if (img && img.src) {
+          var link = document.createElement("a");
+          link.href = img.src;
+          link.download = ""; // Leave download attribute empty to prompt user to name the file
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        } else {
+          alert("No image to save for " + imgId);
         }
-
-        function saveImages() {
-            downloadImage('selectedImage1');
-            downloadImage('selectedImage2');
-        }
-
-        function downloadImage(imgId) {
-            var img = document.getElementById(imgId);
-            if (img && img.src) {
-                var link = document.createElement('a');
-                link.href = img.src;
-                link.download = ''; // Leave download attribute empty to prompt user to name the file
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-            } else {
-                alert('No image to save for ' + imgId);
-            }
-        }
+      }
     </script>
 </body>
+
 </html>
