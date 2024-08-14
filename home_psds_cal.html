@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Selector - Intra-subjects</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .container {
+            margin: 20px;
+        }
+        .image-container {
+            position: relative;
+            width: 100%; /* Adjust the width as needed */
+            overflow: hidden;
+            padding-top: 30%; /* Adjusted Aspect Ratio */
+        }
+        .image-container img {
+            position: absolute;
+            top: -13%; /* Crop by -8% from the top */
+            left: 0;
+            width: 100%;
+            height: auto;
+        }
+        .images-row {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .images-row img {
+            max-width: 100%; /* Adjust the width of each image */
+        }
+        .button-container {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-2xl font-bold mb-4">Select Image</h1>
+        <div class="mb-4">
+            <label for="patient" class="block text-sm font-medium text-gray-700">Patient:</label>
+            <select id="patient" name="patient" class="form-control">
+                <option value="1">Patient 1</option>
+                <option value="2">Patient 2</option>
+                <option value="3">Patient 3</option>
+                <option value="4">Patient 4</option>
+                <option value="5">Patient 5</option>
+                <option value="6">Patient 6</option>
+                <option value="7">Patient 7</option>
+                <option value="8">Patient 8</option>
+                <option value="9">Patient 9</option>
+                <option value="10">Patient 10</option>
+            </select>
+        </div>
+
+        <div class="button-container">
+            <button onclick="showImage()" class="btn btn-primary">Show Image</button>
+            <button onclick="saveImages()" class="btn btn-secondary">Save Images</button>
+        </div>
+        <div class="images-row mt-4">
+            <div class="image-container">
+                <img id="selectedImage1" src="" alt="Selected Image 1" style="display:none;" />
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showImage() {
+
+            var session = 'atHome'
+            var patient = document.getElementById("patient").value;
+
+            var imagePath1 = 'Figures/' + session + '/event_dates_heatmap_patient_' + patient + '.png';
+            var img1 = document.getElementById("selectedImage1");
+
+            img1.src = imagePath1;
+            img1.style.display = "block";
+            
+            } 
+
+        function saveImages() {
+            downloadImage('selectedImage1');
+        }
+
+        function downloadImage(imgId) {
+            var img = document.getElementById(imgId);
+            if (img && img.src) {
+                var link = document.createElement('a');
+                link.href = img.src;
+                link.download = ''; // Leave download attribute empty to prompt user to name the file
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            } else {
+                alert('No image to save for ' + imgId);
+            }
+        }
+    </script>
+</body>
+</html>
