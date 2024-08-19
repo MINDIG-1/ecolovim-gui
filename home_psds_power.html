@@ -18,7 +18,7 @@
         }
         .image-container img {
             position: absolute;
-            top: -8%; /* Crop by -8% from the top */
+            top: -15%; /* Crop by -8% from the top */
             left: 0;
             width: 100%;
             height: auto;
@@ -56,26 +56,23 @@
     <div class="container">
         <h1 class="text-2xl font-bold mb-4">Select Image</h1>
         <div class="mb-4">
-            <label for="patient" class="block text-sm font-medium text-gray-700">Patient:</label>
-            <select id="patient" name="patient" class="form-control">
-                <option value="1">Patient 1</option>
-                <option value="2">Patient 2</option>
-                <option value="3">Patient 3</option>
-                <option value="4">Patient 4</option>
-                <option value="5">Patient 5</option>
-                <option value="6">Patient 6</option>
-                <option value="7">Patient 7</option>
-                <option value="8">Patient 8</option>
-                <option value="9">Patient 9</option>
-                <option value="10">Patient 10</option>
-                <option value="avg">AVG Patient</option> !!!! CHECK IF I HAVE THE PLOTS FOR AVG PATIENT
+            <label for="power_type" class="block text-sm font-medium text-gray-700">Power type:</label>
+            <select id="power_type" name="power_type" class="form-control">
+                <option value="abs_pow_avg_psds">Absolute</option>
+                <option value="rel_pow_avg_psds">Relative</option>
+          
             </select>
         </div>
-
         <div class="mb-4">
-            <label for="condition" class="block text-sm font-medium text-gray-700">Condition:</label>
-            <select id="condition" name="condition" class="form-control">
-                <option value="mvt_stimOFF_mvt_stimON">mvt_stimOFF <i>vs</i> mvt_stimON</option>          
+            <label for="band" class="block text-sm font-medium text-gray-700">Frequency Band:</label>
+            <select id="band" name="band" class="form-control">
+                <option value="delta">Delta: [1-4]Hz</option>     
+                <option value="theta">Theta: [4-8]Hz</option>
+                <option value="alpha">Alpha: [8-13]Hz</option>
+                <option value="alpha1">Alpha1: [8-10]Hz</option>  
+                <option value="alpha2">Alpha2: [10-13]Hz</option>
+                <option value="beta">Beta: [13-30]Hz</option>
+                <option value="gamma">Gamma: [30-45]Hz</option>   
             </select>
         </div>
         <div class="mb-4">
@@ -102,40 +99,21 @@
 
     <script>
         function showImage() {
-            var patient = document.getElementById("patient").value;
-            var condition = document.getElementById("condition").value;
+            var power_type = document.getElementById("power_type").value;
+            var band = document.getElementById("band").value;
             var channel = document.getElementById("channel").value;
 
             // if channel == L, if patient == 1,6, channel = L13, if patient == 2,5 channel = L02, if patient == 7, channel = L03
             // if channel == R, if patient == 1,2,5,7 channel = R13, if patient == 6 channel = R02
-            
-            if (channel === 'L' && (patient === '1' || patient === '6')) {
-                channel = 'L13';
-            } else if (channel === 'L' && (patient === '2' || patient === '5' || patient === 'avg')) {
-                channel = 'L02';
-            } else if (channel === 'L' && patient === '7') {
-                channel = 'L03';
-            } else if (channel === 'R' && (patient === '1' || patient === '2' || patient === '5' || patient === '7' || patient === 'avg')) {
-                channel = 'R13';
-            } else if (channel === 'R' && patient === '6') {
-                channel = 'R02';
-            }
 
             var session = 'atHome'
-            var psdType = 'fft_bin_data'
-
-            var imagePath1 = 'Figures/' + session + '/' + psdType + '_meanEpochs_patient_' + patient + '_twoCond_' + condition + '_' + channel + '.png';
-            var imagePath2 = 'Figures/' + session + '/sig_clusters_' + psdType + '_patient_' + patient + '_twoCond_' + condition + '_' + channel + '.png';
+            var imagePath1 = 'Figures/' + session + '/' + power_type + '_' + band + '_' + channel + '.png';
 
             var img1 = document.getElementById("selectedImage1");
-            var img2 = document.getElementById("selectedImage2");
 
             img1.src = imagePath1;
             img1.style.display = "block";
-            img2.src = imagePath2;
-            img2.style.display = "block";
-            
-        
+  
     }
 
         function saveImages() {
