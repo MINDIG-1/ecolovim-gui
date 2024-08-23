@@ -6,6 +6,8 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Include jQuery from a CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         .container {
             margin: 20px;
@@ -13,45 +15,36 @@
         .image-container {
             position: relative;
             width: 45%; /* Adjust the width as needed */
-            overflow: hidden;
+            /* overflow: hidden; */
             padding-top: 30%; /* Adjusted Aspect Ratio */
         }
         .image-container img {
             position: absolute;
-            top: -8%; /* Crop by -8% from the top */
+            top: -5%; /* Crop by -8% from the top */
             left: 0;
             width: 100%;
             height: auto;
-        }
-        .correlation-container {
-            position: relative;
-            width: 45%; /* Adjust the width as needed */
-            overflow: hidden;
-            padding-top: 56.25%; /* Reset to 16:9 Aspect Ratio */
-            margin-top: 20px;
-        }
-        .correlation-container img {
-            position: absolute;
-            top: -10%; /* Ensure the image is fully visible */
-            left: 0;
-            width: 100%;
-            height: auto;
+            object-fit: contain;
         }
         .images-row {
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
             flex-wrap: wrap;
         }
         .images-row img {
             max-width: 100%; /* Adjust the width of each image */
+            height: auto;
         }
         .button-container {
             margin-top: 20px;
             display: flex;
             gap: 10px;
         }
+
     </style>
 </head>
+
+
 <body>
     <div class="container">
         <h1 class="text-2xl font-bold mb-4">Select Image</h1>
@@ -134,10 +127,8 @@
             img1.src = imagePath1;
             img1.style.display = "block";
             img2.src = imagePath2;
-            img2.style.display = "block";
-            
-        
-    }
+            img2.style.display = "block";           
+        }
 
         function saveImages() {
             downloadImage('selectedImage1');
@@ -157,6 +148,10 @@
                 alert('No image to save for ' + imgId);
             }
         }
+
+
+
+            
     </script>
 </body>
 </html>
