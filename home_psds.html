@@ -23,20 +23,6 @@
             width: 100%;
             height: auto;
         }
-        .correlation-container {
-            position: relative;
-            width: 45%; /* Adjust the width as needed */
-            overflow: hidden;
-            padding-top: 56.25%; /* Reset to 16:9 Aspect Ratio */
-            margin-top: 20px;
-        }
-        .correlation-container img {
-            position: absolute;
-            top: -10%; /* Ensure the image is fully visible */
-            left: 0;
-            width: 100%;
-            height: auto;
-        }
         .images-row {
             display: flex;
             justify-content: space-around;
@@ -109,9 +95,6 @@
             var patient = document.getElementById("patient").value;
             var condition = document.getElementById("condition").value;
             var channel = document.getElementById("channel").value;
-
-            // if channel == L, if patient == 1,6, channel = L13, if patient == 2,5 channel = L02, if patient == 7, channel = L03
-            // if channel == R, if patient == 1,2,5,7 channel = R13, if patient == 6 channel = R02
             
             if (channel === 'L' && (patient === '1' || patient === '4' || patient === '6')) {
                 channel = 'L13';
@@ -176,9 +159,6 @@
             img1.style.display = "block";
             img2.src = imagePath2;
             img2.style.display = "block";
-
-            document.getElementById("corrButton").style.display = "inline-block";
-            document.getElementById("saveCorrButton").style.display = "inline-block";
         }
         
     }
