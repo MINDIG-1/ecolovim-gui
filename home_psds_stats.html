@@ -103,15 +103,15 @@
             // if channel == L, if patient == 1,6, channel = L13, if patient == 2,5 channel = L02, if patient == 7, channel = L03
             // if channel == R, if patient == 1,2,5,7 channel = R13, if patient == 6 channel = R02
             
-            if (channel === 'L' && (patient === '1' || patient === '6')) {
+            if (channel === 'L' && (patient === '1' || patient === '4' || patient === '6')) {
                 channel = 'L13';
-            } else if (channel === 'L' && (patient === '2' || patient === '5' || patient === 'avg')) {
+            } else if (channel === 'L' && (patient === '2' || patient === '3' || patient === '5' || patient === 'avg')) {
                 channel = 'L02';
             } else if (channel === 'L' && patient === '7') {
                 channel = 'L03';
-            } else if (channel === 'R' && (patient === '1' || patient === '2' || patient === '5' || patient === '7' || patient === 'avg')) {
+            } else if (channel === 'R' && (patient === '1' || patient === '2' || patient === '4' || patient === '5' || patient === '7' || patient === 'avg')) {
                 channel = 'R13';
-            } else if (channel === 'R' && patient === '6') {
+            } else if (channel === 'R' && (patient=== '3' || patient === '6')) {
                 channel = 'R02';
             }
 

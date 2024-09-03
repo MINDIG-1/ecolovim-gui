@@ -36,13 +36,32 @@
         }
         .button-container {
             display: flex;
+            flex-direction: column; 
             justify-content: center;
             align-items: center;
             height: 100vh;
+            gap: 60px;
+        }
+        .button-row {
+            display: flex;
+            gap: 10px; /* Space between buttons in the same row */
+            width: 75%; /* Make buttons take up full width */
         }
         .button-container button {
+            flex: 1; /* Make buttons take up equal width */
             margin: 0 10px;
+            padding: 10px;
+            text-align: center;
+            height: 70px;
+            /* background-color: #840032; */
+            /* border: none; */
+            /* background-color: #AFD0D6; */
+            
         }
+        /* .button-container button:hover {
+            background-color: #1B2A41;
+        } */
+        
     </style>
 </head>
 <body>
@@ -51,15 +70,23 @@
         <div class="logo">MINDIG x CHU BORDEAUX</div>
     </div> -->
     <div class="button-container">
-        <button onclick="window.location.href='inter_subjects.html'" class="btn btn-primary mx-2">Within-conditions | Inter-subjects</button>
-        <button onclick="window.location.href='intra_subjects.html'" class="btn btn-primary mx-2">Within-conditions | Intra-subjects</button>
-        <button onclick="window.location.href='intra_subjects_conditions.html'" class="btn btn-primary mx-2">Between-conditions | Intra-subjects</button>
+        <div class="button-row">
+            <button onclick="window.location.href='inter_subjects.html'" class="btn btn-primary mx-2">Within-conditions | Inter-subjects</button>
+            <button onclick="window.location.href='intra_subjects.html'" class="btn btn-primary mx-2">Within-conditions | Intra-subjects</button>
+            <button onclick="window.location.href='intra_subjects_conditions.html'" class="btn btn-primary mx-2">Between-conditions | Intra-subjects</button>   
+        </div>
+    <div class="button-row">
         <button onclick="window.location.href='coherence.html'" class="btn btn-primary mx-2">Coherence</button>
         <button onclick="window.location.href='tfr.html'" class="btn btn-primary mx-2">Time-Frequency maps</button>
+    </div>
+    <div class="button-row">
         <button onclick="window.location.href='home_psds.html'" class="btn btn-primary mx-2">At Home PSDs</button>
         <button onclick="window.location.href='home_psds_cal.html'" class="btn btn-primary mx-2">At Home PSDs - Calendar</button>
+
         <button onclick="window.location.href='home_psds_power.html'" class="btn btn-primary mx-2">At Home PSDs - Power boxplots</button>
         <button onclick="window.location.href='home_psds_stats.html'" class="btn btn-primary mx-2">At Home PSDs - Stats</button>
+        <button onclick="window.location.href='intra_subjects_home.html'" class="btn btn-primary mx-2">At Home PSDs - Correlation Matrices</button>
     </div>
+    </div>  
 </body>
 </html>

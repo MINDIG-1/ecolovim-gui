@@ -72,6 +72,13 @@
             </select>
         </div>
         <div class="mb-4">
+            <label for="channel" class="block text-sm font-medium text-gray-700">Channel:</label>
+            <select id="channel" name="channel" class="form-control">
+                <option value="L">Left hemisphere: L13 / L02 / L03</option>
+                <option value="R">Right hemishere: R13 / R02</option>
+            </select>
+        </div>
+        <!-- <div class="mb-4">
             <label for="channel" class="block text-sm font-medium text-gray-700">Channel: (* Choose channels available during stim ON)</label>
             <select id="channel" name="channel" class="form-control">
                 <option value="L03">L03</option>
@@ -81,7 +88,7 @@
                 <option value="R13">R13</option>
                 <option value="R02">R02</option>
             </select>
-        </div>
+        </div> -->
         <!-- <div class="button-container">
             <button onclick="showImage()" class="btn btn-primary">Show Image</button>
             <button onclick="saveImages()" class="btn btn-secondary">Save Images</button>
@@ -103,11 +110,22 @@
         function showImage() {
             var session = document.getElementById("session").value;
             var psdType = document.getElementById("psdType").value;
-            var patient = parseInt(document.getElementById("patient").value);
+            var patient = document.getElementById("patient").value;
             var channel = document.getElementById("channel").value;
 
-            var imagePath1 = 'Figures/' + session + '/' + psdType + '_meanEpochs_patient' + patient + '_' + channel + '.png';
-            var imagePath2 = 'Figures/' + session + '/' + 'intra_subj_sig_clusters_' + psdType + '_' + channel + '.png';
+            if (channel === 'L' && (patient === '1' || patient === '4' || patient === '6')) {
+                channel = 'L13';
+            } else if (channel === 'L' && (patient === '2' || patient === '3' || patient === '5' || patient === 'avg')) {
+                channel = 'L02';
+            } else if (channel === 'L' && patient === '7') {
+                channel = 'L03';
+            } else if (channel === 'R' && (patient === '1' || patient === '2' || patient === '4' || patient === '5' || patient === '7' || patient === 'avg')) {
+                channel = 'R13';
+            } else if (channel === 'R' && (patient=== '3' || patient === '6')) {
+                channel = 'R02';
+            }
+            var imagePath1 = 'Figures/' + session + '/' + psdType + '_meanEpochs_patient_' + patient + '_allCond_' + channel + '.png';
+            var imagePath2 = 'Figures/' + session + '/' + 'intra_subj_sig_clusters_' + psdType + '_allCond_' + channel + '.png';
 
             var img1 = document.getElementById("selectedImage1");
             var img2 = document.getElementById("selectedImage2");
