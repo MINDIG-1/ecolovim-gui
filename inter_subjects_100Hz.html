@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Selector</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .container {
+            margin: 20px;
+        }
+        .image-container {
+            position: relative;
+            width: 45%; /* Adjust the width as needed */
+            overflow: hidden;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        }
+        .image-container img {
+            position: absolute;
+            top: -8%; /* Crop by -8% from the top */
+            left: 0;
+            width: 100%;
+            height: auto;
+        }
+        .images-row {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .images-row img {
+            max-width: 100%; /* Adjust the width of each image */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-2xl font-bold mb-4">Select Image</h1>
+        <div class="mb-4">
+            <label for="session" class="block text-sm font-medium text-gray-700">Session:</label>
+            <select id="session" name="session" class="form-control">
+                <option value="M3">M3</option>
+                <option value="M6">M6</option>
+            </select>
+        </div>
+        <div class="mb-4">
+            <label for="psdType" class="block text-sm font-medium text-gray-700">PSD Type:</label>
+            <select id="psdType" name="psdType" class="form-control">
+                <option value="psd_abs_allch">Absolute</option>
+                <option value="psd_rel_allch">Relative</option>
+            </select>
+        </div>
+        <div class="mb-4">
+            <label for="condition" class="block text-sm font-medium text-gray-700">Condition:</label>
+            <select id="condition" name="condition" class="form-control">
+                <option value="rest_stimOFF">rest_stimOFF</option>
+                <option value="mvt_stimOFF">mvt_stimOFF</option>
+                <option value="rest_stimON">rest_stimON</option>
+                <option value="mvt_stimON">mvt_stimON</option>
+            </select>
+        </div>
+        <div class="mb-4">
+            <label for="channel" class="block text-sm font-medium text-gray-700">Channel:</label>
+            <select id="channel" name="channel" class="form-control">
+                <option value="L03">L03</option>
+                <option value="L13">L13</option>
+                <option value="L02">L02</option>
+                <option value="R03">R03</option>
+                <option value="R13">R13</option>
+                <option value="R02">R02</option>
+            </select>
+        </div>
+        <button onclick="showImage()" class="btn btn-primary">Show Image</button>
+        <button onclick="saveImages()" class="btn btn-secondary">Save Images</button>
+
+        <div class="images-row mt-4">
+            <div class="image-container">
+                <img id="selectedImage1" src="" alt="Selected Image 1" style="display:none;" />
+            </div>
+            <div class="image-container">
+                <img id="selectedImage2" src="" alt="Selected Image 2" style="display:none;" />
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showImage() {
+            var session = document.getElementById("session").value;
+            var psdType = document.getElementById("psdType").value;
+            var condition = document.getElementById("condition").value;
+            var channel = document.getElementById("channel").value;
+
+            var imagePath1 = 'Figures_4_100Hz/' + session + '/' + psdType + '_' + condition + '_' + channel + '.png';
+            var imagePath2 = 'Figures_4_100Hz/' + session + '/mean_' + psdType + '_' + condition + '_' + channel + '.png';
+
+            var img1 = document.getElementById("selectedImage1");
+            var img2 = document.getElementById("selectedImage2");
+
+            img1.src = imagePath1;
+            img1.style.display = "block";
+            img2.src = imagePath2;
+            img2.style.display = "block";
+        }
+
+        function saveImages() {
+            downloadImage('selectedImage1');
+            downloadImage('selectedImage2');
+        }
+
+        function downloadImage(imgId) {
+            var img = document.getElementById(imgId);
+            if (img && img.src) {
+                var link = document.createElement('a');
+                link.href = img.src;
+                link.download = ''; // Leave download attribute empty to prompt user to name the file
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            } else {
+                alert('No image to save for ' + imgId);
+            }
+        }
+    </script>
+</body>
+</html>
