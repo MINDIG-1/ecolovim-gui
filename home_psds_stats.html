@@ -83,6 +83,7 @@
         <div class="button-container">
             <button onclick="showImage()" class="btn btn-primary">Show Image</button>
             <button onclick="saveImages()" class="btn btn-secondary">Save Images</button>
+            <button onclick="openImages()" class="btn btn-secondary">Open Interactive Images</button>
         </div>
         <div class="images-row mt-4">
             <div class="image-container">
@@ -147,6 +148,36 @@
             } else {
                 alert('No image to save for ' + imgId);
             }
+        }
+
+        function openImages() {
+            var patient = document.getElementById("patient").value;
+            var condition = document.getElementById("condition").value;
+            var channel = document.getElementById("channel").value;
+
+            // if channel == L, if patient == 1,6, channel = L13, if patient == 2,5 channel = L02, if patient == 7, channel = L03
+            // if channel == R, if patient == 1,2,5,7 channel = R13, if patient == 6 channel = R02
+            
+            if (channel === 'L' && (patient === '1' || patient === '4' || patient === '6')) {
+                channel = 'L13';
+            } else if (channel === 'L' && (patient === '2' || patient === '3' || patient === '5' || patient === 'avg')) {
+                channel = 'L02';
+            } else if (channel === 'L' && patient === '7') {
+                channel = 'L03';
+            } else if (channel === 'R' && (patient === '1' || patient === '2' || patient === '4' || patient === '5' || patient === '7' || patient === 'avg')) {
+                channel = 'R13';
+            } else if (channel === 'R' && (patient=== '3' || patient === '6')) {
+                channel = 'R02';
+            }
+
+            var session = 'atHome'
+            var psdType = 'fft_bin_data'
+
+            // var html_imagePath1 = 'Figures/' + session + '/' + psdType + '_meanEpochs_patient_' + patient + '_twoCond_' + condition + '_' + channel + '.html';
+            var html_imagePath2 = 'Figures/' + session + '/sig_clusters_' + psdType + '_patient_' + patient + '_twoCond_' + condition + '_' + channel + '.html';
+            
+            // window.open(html_imagePath1, '_blank', 'width=800,height=600');
+            window.open(html_imagePath2, '_blank', 'width=800,height=600');
         }
 
 
