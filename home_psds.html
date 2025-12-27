@@ -115,25 +115,34 @@
                 channel = 'L02';
             } else if (channel === 'L' && patient === '7') {
                 channel = 'L03';
-            } else if (channel === 'R' && (patient === '1' || patient === '2' || patient === '4' || patient === '5' || patient === '7' || patient === '9' || patient === 'avg')) {
+            } else if (channel === 'R' && (patient === '1' || patient === '2' || patient === '4' || patient === '5' || patient === '7' || patient === '9')) {
                 channel = 'R13';
-            } else if (channel === 'R' && (patient=== '3' || patient === '6' || patient === '8' || patient === '10')) {
+            } else if (channel === 'R' && (patient=== '3' || patient === '6' || patient === '8' || patient === '10' || patient === 'avg')) {
                 channel = 'R02';
             }
             var session = 'atHome'
             var psdType = 'fft_bin_data'
 
             if (patient === 'avg') {
-            var imagePath1 = 'Figures/' + session + '/all_subj_' + psdType + '_' + condition + '_' + channel + '.png';
-            var imagePath2 = 'Figures/' + session + '/mean_std_subj_' + psdType + '_' + condition + '_' + channel + '.png';
 
-            var img1 = document.getElementById("selectedImage1");
-            var img2 = document.getElementById("selectedImage2");
+                if (condition === 'allCond'){
+                    // var imagePath1 = 'Figures/' + session + '/all_subj_' + psdType + '_' + condition + '_' + channel + '.png';
+                    var imagePath1 = 'Figures/' + session + '/' + psdType + '_meanEpochs_patient_avg_allCond_' + channel + '.png';
 
-            img1.src = imagePath1;
-            img1.style.display = "block";
-            img2.src = imagePath2;
-            img2.style.display = "block";
+                } else {
+
+                var imagePath1 = 'Figures/' + session + '/all_subj_' + psdType + '_' + condition + '_' + channel + '.png';
+                var imagePath2 = 'Figures/' + session + '/mean_std_subj_' + psdType + '_' + condition + '_' + channel + '.png';
+                    }
+
+
+                var img1 = document.getElementById("selectedImage1");
+                var img2 = document.getElementById("selectedImage2");
+
+                img1.src = imagePath1;
+                img1.style.display = "block";
+                img2.src = imagePath2;
+                img2.style.display = "block";
             
             } else {
 
@@ -168,10 +177,10 @@
                 img2.style.display = "block";
             }
 
-            img1.src = imagePath1;
-            img1.style.display = "block";
-            img2.src = imagePath2;
-            img2.style.display = "block";
+            // img1.src = imagePath1;
+            // img1.style.display = "block";
+            // img2.src = imagePath2;
+            // img2.style.display = "block";
         }
         
     }
@@ -209,9 +218,9 @@
                 channel = 'L02';
             } else if (channel === 'L' && patient === '7') {
                 channel = 'L03';
-            } else if (channel === 'R' && (patient === '1' || patient === '2' || patient === '4' || patient === '5' || patient === '7' || patient === '9' || patient === 'avg')) {
+            } else if (channel === 'R' && (patient === '1' || patient === '2' || patient === '4' || patient === '5' || patient === '7' || patient === '9')) {
                 channel = 'R13';
-            } else if (channel === 'R' && (patient=== '3' || patient === '6' || patient === '8' || patient === '10')) {
+            } else if (channel === 'R' && (patient=== '3' || patient === '6' || patient === '8' || patient === '10' || patient === 'avg')) {
                 channel = 'R02';
             }
 
